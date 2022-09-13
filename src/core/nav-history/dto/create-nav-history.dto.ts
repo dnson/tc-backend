@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateNavHistoryDto {
   @IsNotEmpty()
@@ -10,7 +10,12 @@ export class CreateNavHistoryDto {
   @IsNotEmpty()
   @ApiProperty()
   @IsString()
-  navDate: string;
+  navDateStr: string;
+
+  @IsNotEmpty()
+  @ApiProperty()
+  @IsNumber()
+  navDate: number;
 
   @IsNotEmpty()
   @ApiProperty()

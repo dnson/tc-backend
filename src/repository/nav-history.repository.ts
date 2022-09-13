@@ -42,6 +42,7 @@ export class NavHistoryRepository implements INavHistoryRepository {
   ): Promise<any> {
     const navHistory = new this.navHistoryModal({
       navDate: createNavHistoryDto.navDate,
+      navDateStr: createNavHistoryDto.navDateStr,
       nav: createNavHistoryDto.nav,
       productId: createNavHistoryDto.productId,
       navObject: createNavHistoryDto.navObject,

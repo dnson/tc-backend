@@ -20,7 +20,11 @@ export class NavHistoryEntity {
 
   @ApiProperty()
   @Prop()
-  navDate: string;
+  navDate: number;
+
+  @ApiProperty()
+  @Prop()
+  navDateStr: string;
 
   @ApiProperty()
   @Prop()
@@ -38,4 +42,4 @@ export class NavHistoryEntity {
 export const NavHistorySchema = SchemaFactory.createForClass(
   NavHistoryEntity,
 );
-NavHistorySchema.index({productId:1, navDate: 1}, { unique: true });
+NavHistorySchema.index({productId:1, navDateStr: 1}, { unique: true });

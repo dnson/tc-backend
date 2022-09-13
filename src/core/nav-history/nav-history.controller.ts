@@ -63,20 +63,28 @@ export class NavHistoryController {
   async findAllByCondition(
     @Query('product-id')
       productId: string,
-    @Query('offset', ParseIntPipe)
-      offset: number,
-    @Query('limit', ParseIntPipe)
-      limit: number,
+
+    @Query('fromDate')
+      fromDate?: number,
+    @Query('toDate')
+      toDate?: number,
+    // @ts-ignore
     @Res() res: Response,
   ) {
     try {
       const navHistory = await this.navHistoryService.findByProductId(
         productId,
+        {
+          offset: 0,
+          limit:10000,
+          fromDate,
+          toDate
+        }
       );
       res.status(HttpStatus.OK).send({
         status: 200,
         message: 'success',
-        data: navHistory,
+        data: navHistory.map(nav => ({...nav._doc, navDate: nav._doc?.navDateStr || ''})),
       });
     } catch (err) {
       this.logger.log(`find all nav history failed with error ${err}`);
